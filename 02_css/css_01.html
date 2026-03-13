@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>간단한 CSS 예제</title>
+	<style>
+		body {
+			margin: 0;
+			font-family: Arial, sans-serif;
+			background: #f5f7fb;
+			color: #1f2937;
+		}
+
+		.wrap {
+			max-width: 700px;
+			margin: 40px auto;
+			padding: 0 16px;
+		}
+
+		.card {
+			background: #ffffff;
+			border: 1px solid #dbe2f1;
+			border-radius: 12px;
+			padding: 20px;
+			box-shadow: 0 6px 18px rgba(24, 39, 75, 0.08);
+		}
+
+		h1 {
+			margin-top: 0;
+			color: #1d4ed8;
+		}
+
+		.point {
+			color: #2563eb;
+			font-weight: bold;
+		}
+
+		#notice {
+			margin-top: 14px;
+			padding: 10px;
+			background: #eef6ff;
+			border-left: 4px solid #2563eb;
+		}
+
+		.btn {
+			margin-top: 14px;
+			border: none;
+			background: #2563eb;
+			color: white;
+			padding: 10px 14px;
+			border-radius: 8px;
+			cursor: pointer;
+		}
+
+		.btn:hover {
+			background: #1e40af;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<div class="card">
+			<h1>간단한 CSS 예제</h1>
+			<p>이 페이지는 <span class="point">기본 선택자</span>와 <span class="point">박스 스타일</span>만 사용한 예제입니다.</p>
+
+			<ul>
+				<li>태그 선택자: h1, body</li>
+				<li>클래스 선택자: .card, .point, .btn</li>
+				<li>아이디 선택자: #notice</li>
+				<li>가상 클래스: .btn:hover</li>
+			</ul>
+
+			<div id="notice">스타일은 구조(HTML)와 분리할수록 관리가 쉬워집니다.</div>
+			<button class="btn">버튼 호버 확인</button>
+		</div>
+	</div>
+</body>
+</html>
