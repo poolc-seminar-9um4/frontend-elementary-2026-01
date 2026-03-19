@@ -1,0 +1,384 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>박스 모델 학습 페이지</title>
+    <style>
+        :root {
+            --bg: #f4f7ff;
+            --surface: #ffffff;
+            --text: #1e2a3a;
+            --content: #ffd166;
+            --padding: #8bd3dd;
+            --border: #3a86ff;
+            --margin: #ef476f;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", sans-serif;
+            color: var(--text);
+            background: linear-gradient(135deg, #edf2ff, var(--bg));
+        }
+
+        .page {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 32px 20px 48px;
+        }
+
+        h1 {
+            margin: 0 0 8px;
+            font-size: 32px;
+        }
+
+        .desc {
+            margin: 0 0 24px;
+        }
+
+        .stage {
+            background: var(--surface);
+            border-radius: 14px;
+            padding: 24px;
+            box-shadow: 0 8px 25px rgba(20, 38, 70, 0.08);
+        }
+
+        .margin-box {
+            background: color-mix(in srgb, var(--margin) 16%, white);
+            padding: 28px;
+            border: 2px dashed var(--margin);
+        }
+
+        .border-box {
+            border: 10px solid var(--border);
+            background: color-mix(in srgb, var(--border) 10%, white);
+            padding: 22px;
+        }
+
+        .padding-box {
+            background: color-mix(in srgb, var(--padding) 25%, white);
+            padding: 20px;
+        }
+
+        .content-box {
+            width: 240px;
+            min-height: 90px;
+            background: var(--content);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .legend {
+            margin-top: 20px;
+            display: grid;
+            gap: 8px;
+            background: #f8f9fc;
+            border-radius: 10px;
+            padding: 14px;
+        }
+
+        .legend span {
+            font-weight: 700;
+        }
+
+        .controls {
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+        }
+
+        .control {
+            background: #fff;
+            border: 1px solid #d9e0ef;
+            border-radius: 10px;
+            padding: 10px 12px;
+        }
+
+        .control label {
+            display: block;
+            font-size: 13px;
+            margin-bottom: 6px;
+        }
+
+        .control input {
+            width: 100%;
+        }
+
+        .hint {
+            margin-top: 14px;
+            font-size: 14px;
+        }
+
+        .text-stage {
+            margin-top: 24px;
+            background: var(--surface);
+            border-radius: 14px;
+            padding: 24px;
+            box-shadow: 0 8px 25px rgba(20, 38, 70, 0.08);
+        }
+
+        .align-grid {
+            margin-top: 14px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+        }
+
+        .align-card {
+            background: #fff;
+            border: 1px solid #d9e0ef;
+            border-radius: 10px;
+            padding: 12px;
+        }
+
+        .align-card h3 {
+            margin: 0 0 8px;
+            font-size: 15px;
+        }
+
+        .sample {
+            margin: 0;
+            padding: 10px;
+            min-height: 90px;
+            border-radius: 8px;
+            background: #f5f8ff;
+            line-height: 1.6;
+            border: 1px dashed #becdea;
+        }
+
+        .left {
+            text-align: left;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .right {
+            text-align: right;
+        }
+
+        .justify {
+            text-align: justify;
+        }
+
+        .playground {
+            margin-top: 16px;
+            background: #f8f9fc;
+            border-radius: 10px;
+            padding: 14px;
+        }
+
+        .playground select {
+            margin-top: 8px;
+            padding: 6px 8px;
+            border: 1px solid #c9d4eb;
+            border-radius: 8px;
+        }
+
+        #liveText {
+            margin-top: 12px;
+        }
+
+        .vertical-stage {
+            margin-top: 24px;
+            background: var(--surface);
+            border-radius: 14px;
+            padding: 24px;
+            box-shadow: 0 8px 25px rgba(20, 38, 70, 0.08);
+        }
+
+        .vertical-demo {
+            margin-top: 14px;
+            height: 220px;
+            border: 2px dashed #9fb3db;
+            border-radius: 10px;
+            background: linear-gradient(180deg, #f9fbff, #f2f6ff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 12px;
+        }
+
+        .vertical-item {
+            width: min(320px, 90%);
+            padding: 14px;
+            border-radius: 10px;
+            background: #ffffff;
+            border: 1px solid #c9d4eb;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .vertical-controls {
+            margin-top: 14px;
+            background: #f8f9fc;
+            border-radius: 10px;
+            padding: 14px;
+        }
+
+        .vertical-controls select {
+            margin-top: 8px;
+            padding: 6px 8px;
+            border: 1px solid #c9d4eb;
+            border-radius: 8px;
+        }
+
+        #verticalValue {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <main class="page">
+        <h1>CSS 박스 모델 실습</h1>
+        <p class="desc">슬라이더를 움직이면 margin, border, padding 값이 실시간으로 바뀝니다.</p>
+
+        <section class="stage">
+            <div class="margin-box" id="marginBox">
+                <div class="border-box" id="borderBox">
+                    <div class="padding-box" id="paddingBox">
+                        <div class="content-box" id="contentBox">content</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="legend" id="legend">
+                <div><span>margin</span>: 28px (바깥 여백)</div>
+                <div><span>border</span>: 10px (경계선 두께)</div>
+                <div><span>padding</span>: 20px (안쪽 여백)</div>
+                <div><span>content</span>: 240px x 90px (실제 내용 영역)</div>
+            </div>
+
+            <div class="controls">
+                <div class="control">
+                    <label for="margin">margin</label>
+                    <input id="margin" type="range" min="0" max="80" value="28" />
+                </div>
+                <div class="control">
+                    <label for="border">border</label>
+                    <input id="border" type="range" min="0" max="30" value="10" />
+                </div>
+                <div class="control">
+                    <label for="padding">padding</label>
+                    <input id="padding" type="range" min="0" max="80" value="20" />
+                </div>
+            </div>
+
+            <p class="hint">팁: 개발자 도구에서 요소를 선택하면 계산된 박스 모델을 더 정확히 볼 수 있습니다.</p>
+        </section>
+
+        <section class="text-stage">
+            <h2>글자 정렬 실습</h2>
+            <p class="desc">아래 예제에서 text-align 값에 따라 문장 배치가 어떻게 달라지는지 비교할 수 있습니다.</p>
+
+            <div class="align-grid">
+                <article class="align-card">
+                    <h3>left</h3>
+                    <p class="sample left">기본 정렬은 보통 왼쪽입니다. 문단의 시작점이 일정해서 읽기 편합니다.</p>
+                </article>
+                <article class="align-card">
+                    <h3>center</h3>
+                    <p class="sample center">제목이나 짧은 문장을 가운데로 두고 싶을 때 자주 사용합니다.</p>
+                </article>
+                <article class="align-card">
+                    <h3>right</h3>
+                    <p class="sample right">오른쪽 기준 정렬입니다. 버튼 라벨이나 특정 레이아웃에서 사용됩니다.</p>
+                </article>
+                <article class="align-card">
+                    <h3>justify</h3>
+                    <p class="sample justify">양쪽 정렬은 문단의 좌우 끝을 맞춥니다. 긴 본문에서 신문처럼 보이게 하고 싶을 때 사용합니다.</p>
+                </article>
+            </div>
+
+            <div class="playground">
+                <label for="alignSelect">직접 정렬 바꾸기</label><br />
+                <select id="alignSelect">
+                    <option value="left">left</option>
+                    <option value="center">center</option>
+                    <option value="right">right</option>
+                    <option value="justify">justify</option>
+                </select>
+                <p class="sample left" id="liveText">이 문장을 선택한 정렬 방식으로 바꿔보세요. 정렬은 콘텐츠의 가독성과 화면 인상을 크게 바꿉니다.</p>
+            </div>
+        </section>
+
+        <section class="vertical-stage">
+            <h2>세로 정렬 실습</h2>
+            <p class="desc">아래 상자는 flex 레이아웃이며, align-items 값으로 내부 요소의 세로 위치를 바꿉니다.</p>
+
+            <div class="vertical-demo" id="verticalDemo">
+                <div class="vertical-item">세로 정렬 대상 요소</div>
+            </div>
+
+            <div class="vertical-controls">
+                <label for="verticalSelect">align-items 선택</label><br />
+                <select id="verticalSelect">
+                    <option value="flex-start">flex-start (위)</option>
+                    <option value="center" selected>center (가운데)</option>
+                    <option value="flex-end">flex-end (아래)</option>
+                </select>
+                <p id="verticalValue">현재 값: center</p>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const marginInput = document.getElementById("margin");
+        const borderInput = document.getElementById("border");
+        const paddingInput = document.getElementById("padding");
+        const marginBox = document.getElementById("marginBox");
+        const borderBox = document.getElementById("borderBox");
+        const paddingBox = document.getElementById("paddingBox");
+        const legend = document.getElementById("legend");
+        const alignSelect = document.getElementById("alignSelect");
+        const liveText = document.getElementById("liveText");
+        const verticalSelect = document.getElementById("verticalSelect");
+        const verticalDemo = document.getElementById("verticalDemo");
+        const verticalValue = document.getElementById("verticalValue");
+
+        function render() {
+            const margin = Number(marginInput.value);
+            const border = Number(borderInput.value);
+            const padding = Number(paddingInput.value);
+
+            marginBox.style.padding = margin + "px";
+            borderBox.style.borderWidth = border + "px";
+            paddingBox.style.padding = padding + "px";
+
+            legend.innerHTML = ""
+                + "<div><span>margin</span>: " + margin + "px (바깥 여백)</div>"
+                + "<div><span>border</span>: " + border + "px (경계선 두께)</div>"
+                + "<div><span>padding</span>: " + padding + "px (안쪽 여백)</div>"
+                + "<div><span>content</span>: 240px x 90px (실제 내용 영역)</div>";
+        }
+
+        marginInput.addEventListener("input", render);
+        borderInput.addEventListener("input", render);
+        paddingInput.addEventListener("input", render);
+
+        alignSelect.addEventListener("change", function () {
+            liveText.style.textAlign = alignSelect.value;
+        });
+
+        verticalSelect.addEventListener("change", function () {
+            verticalDemo.style.alignItems = verticalSelect.value;
+            verticalValue.textContent = "현재 값: " + verticalSelect.value;
+        });
+
+        render();
+    </script>
+</body>
+</html>
