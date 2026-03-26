@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!-- 이 문서가 HTML5 표준에 의해 작성되었음을 브라우저에게 알립니다 -->
+
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- 한글이나 다른 언어가 깨지지 않도록 인코딩 방식을 지정합니다 -->
+    <title>웹 초급트랙 | HTML 기초</title>
+    <!-- 브라우저의 탭바에 보이는 페이지명을 지정합니다 -->
+    <link rel="stylesheet" type="text/css" href="my_style.css">
+    <script>
+        function greetings() {
+            let name = prompt("이름을 입력하세요");
+            alert(name+"님 안녕하세요!");
+        }
+    </script>
+</head>
+
+<body>
+    <!-- 사용자 눈에 실제로 보이는 콘텐츠를 담는 영역입니다 -->
+
+    <!-- 구역을 나누는 태그들 -->
+    <div class="poolbackground title" >
+        <p>풀씨에 오신걸 환영합니다!</p>
+    </div>
+    <p>
+        ID: <input type="text" />
+    </p>
+
+    <p>
+        PW: <input type="text" />
+    </p>
+    <button onclick="greetings()">인사하기</button>
+
+</body>
+
+</html>
