@@ -1,0 +1,15 @@
+.title {
+    color: rgb(78, 196, 60);
+    font-weight: 400;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.poolbackground {
+    aspect-ratio: 1920 / 480;
+    background-image: url("https://poolc.org/assets/main-banner-DAW2HCpy.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
