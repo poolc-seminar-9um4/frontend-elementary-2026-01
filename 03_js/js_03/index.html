@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!-- 이 문서가 HTML5 표준에 의해 작성되었음을 브라우저에게 알립니다 -->
+
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- 한글이나 다른 언어가 깨지지 않도록 인코딩 방식을 지정합니다 -->
+    <title>웹 초급트랙 | HTML 기초</title>
+    <!-- 브라우저의 탭바에 보이는 페이지명을 지정합니다 -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script>
+        function register() {
+            let name = prompt("성함을 입력해 주세요.");
+            let email = prompt("이메일을 입력해 주세요.");
+
+            document.getElementById("account-name-display").innerHTML = "이름: " + name;
+            document.getElementById("account-email-display").innerHTML = "이메일: " + email;
+        }
+    </script>
+</head>
+
+<body>
+    <!-- 사용자 눈에 실제로 보이는 콘텐츠를 담는 영역입니다 -->
+
+    <!-- 구역을 나누는 태그들 -->
+    <div class="poolbackground title" >
+        <p>풀씨에 오신걸 환영합니다!</p>
+    </div>
+
+    <button onclick="register()">가입하기</button>
+
+    <div class="account-info">
+        <p id="account-name-display">
+            이름:
+        </p>
+        <p id="account-email-display">
+            이메일:
+        </p>
+    </div>
+
+</body>
+
+</html>
