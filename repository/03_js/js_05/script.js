@@ -26,5 +26,9 @@ let poolc_list = [
 ]
 
 function MemberOverCredit(num) {
-  // write your code here
+    for (const obj of poolc_list){
+        if (obj["credit"] >= num){
+            console.log(obj["name"])
+        }
+    }
 }
